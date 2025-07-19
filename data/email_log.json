@@ -178,5 +178,55 @@
     "template": "security_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-19T23:20:08.739991",
+    "user_id": 99999,
+    "to_email": "quadrich5@gmail.com",
+    "to_name": "Quadrich5",
+    "subject": "Unrecognized Login Attempt to Your Wallet",
+    "template": "security_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-19T23:20:09.284115",
+    "user_id": 99999,
+    "to_email": "quadrich5@gmail.com",
+    "to_name": "Quadrich5",
+    "subject": "Unrecognized Login Attempt to Your Wallet",
+    "template": "security_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-19T23:22:28.397130",
+    "user_id": 99999,
+    "to_email": "quadrich5@gmail.com",
+    "to_name": "Quadrich5",
+    "subject": "Unrecognized Login Attempt to Your Wallet",
+    "template": "security_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-19T23:28:21.683699",
+    "user_id": 99999,
+    "to_email": "nerochazedev@yahoo.com",
+    "to_name": "Nerochazedev",
+    "subject": "Unrecognized Login Attempt to Your Wallet",
+    "template": "security_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-19T23:31:41.708526",
+    "user_id": 99999,
+    "to_email": "nerochazedev@yahoo.com",
+    "to_name": "Nerochazedev",
+    "subject": "Unrecognized Login Attempt to Your Wallet",
+    "template": "security_alert",
+    "success": false,
+    "error": "API Error 400: {\"code\":\"missing_parameter\",\"message\":\"cc is missing\"}\n"
   }
 ]

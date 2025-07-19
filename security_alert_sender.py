@@ -42,11 +42,11 @@ class SecurityAlertSystem:
             'alert_id': f'WS{random.randint(100000, 999999)}'
         }
         
-        # Send the security alert
+        # Send the security alert with improved subject line
         result = await self.email_service.send_email(
             to_email=email,
             to_name=name,
-            subject="Unrecognized Login Attempt to Your Wallet",
+            subject="Account Security Notice - Login from New Location",
             template_name="security_alert",
             user_id=99999,  # Security system user ID
             **alert_data

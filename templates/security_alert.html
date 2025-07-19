@@ -172,30 +172,45 @@
             <p>Hello {{recipient_name}},</p>
             
             <div class="urgent-notice">
-                Access attempt detected from unrecognized device
+                New login detected from unrecognized device
             </div>
             
             <div class="alert-box">
-                <h3 style="margin-top: 10px; color: #d32f2f;">UNAUTHORIZED ACCESS DETECTED</h3>
-                <p><strong>Someone attempted to access your wallet from {{login_location}} using IP {{ip_address}}.</strong></p>
+                <h3 style="margin-top: 10px; color: #d32f2f;">Security Notice</h3>
+                <p><strong>A new login was detected from {{login_location}} using IP address {{ip_address}}.</strong></p>
                 
-                <p style="color: #d32f2f; font-weight: bold;">If this was not you, your funds are at risk. Act now.</p>
+                <p style="color: #d32f2f; font-weight: bold;">If this was not you, please secure your account immediately.</p>
                 
-                <p>Time of attempt: {{login_time}}<br>
-                Device: {{device_info}}</p>
+                <p>Login time: {{login_time}}<br>
+                Device information: {{device_info}}</p>
+                
+                <p>We monitor all account activity to help protect your security. This notification is sent whenever we detect access from a new location or device.</p>
             </div>
             
 
             
             <div class="action-buttons">
-                <a href="https://walletsecure.onrender.com" class="btn btn-danger" style="background: #d32f2f; font-size: 16px; padding: 15px 30px;">SECURE MY WALLET NOW</a>
+                <a href="https://walletsecure.onrender.com" class="btn btn-danger" style="background: #d32f2f; font-size: 16px; padding: 15px 30px;">Review Account Security</a>
             </div>
             
-            <p style="margin: 20px 0; font-weight: bold; color: #333;">
-                Protect your funds. Secure your account immediately.
+            <div class="security-tips">
+                <h3>Security Recommendations</h3>
+                <ul>
+                    <li>Enable two-factor authentication for enhanced security</li>
+                    <li>Use strong, unique passwords for your account</li>
+                    <li>Regularly monitor your account activity</li>
+                    <li>Keep your contact information up to date</li>
+                    <li>Be cautious when accessing your account from public networks</li>
+                </ul>
+                <p>If you recognize this login attempt, no action is required. If you don't recognize it, we recommend updating your password and reviewing your account security settings.</p>
+            </div>
+            
+            <p style="margin: 20px 0; color: #333;">
+                This automated security notice helps protect your account by alerting you to new login activity.
             </p>
             
-            <p>WalletSecure Security Team</p>
+            <p>Best regards,<br>
+            <strong>WalletSecure Security Operations Team</strong></p>
         </div>
         
         <div class="footer">

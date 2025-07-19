@@ -98,16 +98,23 @@ class EmailService:
                 'error': f'Template {template_name} not found'
             }
         
-        # Replace template variables
+        # Replace template variables with current date
+        from datetime import datetime
         template_vars.update({
             'recipient_name': to_name,
-            'recipient_email': to_email
+            'recipient_email': to_email,
+            'current_date': datetime.now().strftime('%B %d, %Y')
         })
         
         for key, value in template_vars.items():
             html_content = html_content.replace(f'{{{{{key}}}}}', str(value))
         
-        # Prepare email data
+        # Generate plain text version for better deliverability
+        import re
+        text_content = re.sub('<[^<]+?>', '', html_content)
+        text_content = re.sub(r'\s+', ' ', text_content).strip()
+        
+        # Prepare email data with deliverability best practices
         email_data = {
             'sender': {
                 'name': config.DEFAULT_SENDER_NAME,
@@ -120,7 +127,20 @@ class EmailService:
                 }
             ],
             'subject': subject,
-            'htmlContent': html_content
+            'htmlContent': html_content,
+            'textContent': text_content,
+            # Add headers for better deliverability
+            'headers': {
+                'X-Mailer': 'WalletSecure-Bot-v1.0',
+                'List-Unsubscribe': '<mailto:unsubscribe@walletsecure.com>',
+                'Reply-To': config.DEFAULT_SENDER_EMAIL
+            },
+            # Add tracking and deliverability settings
+            'params': {
+                'FNAME': to_name.split(' ')[0] if ' ' in to_name else to_name,
+                'LNAME': to_name.split(' ')[-1] if ' ' in to_name else '',
+                'EMAIL': to_email
+            }
         }
         
         # Send email

@@ -28,5 +28,25 @@
     "template": "welcome_email",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-19T22:23:53.284552",
+    "user_id": 12345,
+    "to_email": "ayinlasalami6@gmail.com",
+    "to_name": "Ayinla Salami",
+    "subject": "\ud83d\udd12 Security Alert: Unrecognized Login Attempt Detected",
+    "template": "security_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-19T22:24:19.552509",
+    "user_id": 99999,
+    "to_email": "ayinlasalami6@gmail.com",
+    "to_name": "Ayinla Salami",
+    "subject": "\ud83d\udd12 URGENT: Unrecognized Login Attempt to Your Wallet",
+    "template": "security_alert",
+    "success": true,
+    "error": null
   }
 ]

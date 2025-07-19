@@ -62,7 +62,8 @@ class EmailService:
         templates = []
         template_info = {
             'welcome_email': 'Welcome email for new clients',
-            'notification_email': 'General notification email'
+            'notification_email': 'General notification email',
+            'security_alert': 'Security alert for suspicious login attempts'
         }
         
         if not os.path.exists(config.TEMPLATES_DIR):

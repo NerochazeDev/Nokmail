@@ -23,8 +23,10 @@ class SecurityAlertSystem:
             name = email.split('@')[0].title()
         
         # Generate realistic data if not provided
-        locations = ['Lagos, Nigeria', 'Abuja, Nigeria', 'Port Harcourt, Nigeria', 
-                    'Kano, Nigeria', 'Ibadan, Nigeria', 'Unknown Location']
+        locations = ['Beijing, China', 'Shanghai, China', 'Karachi, Pakistan', 
+                    'Lahore, Pakistan', 'Mumbai, India', 'Delhi, India',
+                    'Dhaka, Bangladesh', 'Kathmandu, Nepal', 'Colombo, Sri Lanka',
+                    'Manila, Philippines', 'Jakarta, Indonesia', 'Ho Chi Minh City, Vietnam']
         devices = ['Windows 11 Desktop', 'MacBook Pro', 'iPhone 15', 'Android Phone', 
                   'iPad', 'Linux Ubuntu', 'Unknown Device']
         browsers = ['Chrome 120.0.6099.109', 'Safari 17.2.1', 'Firefox 121.0', 
@@ -74,7 +76,6 @@ async def demo_security_system():
     result = await security_system.send_login_warning(
         email="ayinlasalami6@gmail.com",
         name="Ayinla Salami",
-        location="Lagos, Nigeria",
         device="Unknown Windows Device"
     )
     

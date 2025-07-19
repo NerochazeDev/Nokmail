@@ -130,11 +130,18 @@ class EmailService:
             'subject': subject,
             'htmlContent': html_content,
             'textContent': text_content,
-            # Add headers for better deliverability
+            # Add headers for better deliverability and spam prevention
             'headers': {
-                'X-Mailer': 'WalletSecure-Bot-v1.0',
+                'X-Mailer': 'WalletSecure Security System',
                 'List-Unsubscribe': '<mailto:unsubscribe@walletsecure.com>',
-                'Reply-To': config.DEFAULT_SENDER_EMAIL
+                'Reply-To': config.DEFAULT_SENDER_EMAIL,
+                'X-Priority': '1',
+                'Importance': 'high',
+                'X-MSMail-Priority': 'High',
+                'Authentication-Results': 'spf=pass smtp.mailfrom=walletsecure.com',
+                'Message-ID': f'<{datetime.now().strftime("%Y%m%d%H%M%S")}.security@walletsecure.com>',
+                'Content-Type': 'text/html; charset=UTF-8',
+                'MIME-Version': '1.0'
             },
             # Add tracking and deliverability settings
             'params': {

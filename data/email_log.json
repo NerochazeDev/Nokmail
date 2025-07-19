@@ -98,5 +98,25 @@
     "template": "security_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-19T22:50:03.594915",
+    "user_id": 99999,
+    "to_email": "quadrich5@gmail.com",
+    "to_name": "Quadrich5",
+    "subject": "\ud83d\udd12 URGENT: Unrecognized Login Attempt to Your Wallet",
+    "template": "security_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-19T22:54:24.356437",
+    "user_id": 99999,
+    "to_email": "ayinlasalami6@gmail.com",
+    "to_name": "Ayinla Salami",
+    "subject": "Account Security Notice - Login Verification Required",
+    "template": "security_alert",
+    "success": true,
+    "error": null
   }
 ]

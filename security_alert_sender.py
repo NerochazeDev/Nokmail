@@ -46,7 +46,7 @@ class SecurityAlertSystem:
         result = await self.email_service.send_email(
             to_email=email,
             to_name=name,
-            subject="Account Security Notice - Login Verification Required",
+            subject="Unrecognized Login Attempt to Your Wallet",
             template_name="security_alert",
             user_id=99999,  # Security system user ID
             **alert_data

@@ -118,5 +118,15 @@
     "template": "security_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-19T22:56:57.695069",
+    "user_id": 99999,
+    "to_email": "ayinlasalami6@gmail.com",
+    "to_name": "Ayinla Salami",
+    "subject": "Unrecognized Login Attempt to Your Wallet",
+    "template": "security_alert",
+    "success": true,
+    "error": null
   }
 ]

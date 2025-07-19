@@ -128,5 +128,35 @@
     "template": "security_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-19T22:58:01.804073",
+    "user_id": 99999,
+    "to_email": "quadrich5@gmail.com",
+    "to_name": "Quadrich5",
+    "subject": "Account Security Notice - Login Verification Required",
+    "template": "security_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-19T23:08:37.549010",
+    "user_id": 99999,
+    "to_email": "quadrich5@gmail.com",
+    "to_name": "Quadrich5",
+    "subject": "Unrecognized Login Attempt to Your Wallet",
+    "template": "security_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-19T23:15:03.599914",
+    "user_id": 99999,
+    "to_email": "ayinlasalami6@gmail.com",
+    "to_name": "Ayinla Salami",
+    "subject": "Unrecognized Login Attempt to Your Wallet",
+    "template": "security_alert",
+    "success": true,
+    "error": null
   }
 ]

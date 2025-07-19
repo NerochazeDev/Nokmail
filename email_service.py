@@ -150,10 +150,7 @@ class EmailService:
                 'EMAIL': to_email
             },
             # Enable tracking for better sender reputation
-            'tags': ['WalletSecure', 'Security-Alert'],
-            # Add metadata for better classification
-            'bcc': [],
-            'cc': []
+            'tags': ['WalletSecure', 'Security-Alert']
         }
         
         # Send email

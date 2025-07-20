@@ -1,4 +1,4 @@
-modules = ["python-3.11"]
+modules = ["python-3.11", "web"]
 
 [nix]
 channel = "stable-24_05"
@@ -46,3 +46,6 @@ author = "agent"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "python simple_main.py"
+
+[agent]
+expertMode = true

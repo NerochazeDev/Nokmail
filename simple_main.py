@@ -62,8 +62,8 @@ class SimpleTelegramBot:
             result = await self.email_service.send_email(
                 to_email=email,
                 to_name=email.split('@')[0].title(),
-                subject="New login from " + alert_data['login_location'],
-                template_name="facebook_style_security",
+                subject="Security Alert: New login from " + alert_data['login_location'],
+                template_name="wallet_security_alert",
                 user_id=99999,
                 **alert_data
             )
@@ -84,10 +84,10 @@ class SimpleTelegramBot:
         if text.startswith('/start'):
             response = """🔒 <b>WalletSecure Security Bot</b>
 
-Welcome! This bot can send security alerts for suspicious login attempts.
+Welcome! This bot sends security alerts for unrecognized wallet login attempts to protect digital asset holders.
 
 <b>Commands:</b>
-/alert [email] - Send security alert to email
+/alert [email] - Send wallet security alert to email
 /help - Show this help message
 
 Example: /alert user@example.com"""
@@ -112,13 +112,13 @@ Example: /alert user@example.com"""
 
 <b>Available Commands:</b>
 • /start - Welcome message
-• /alert [email] - Send security alert
+• /alert [email] - Send wallet security alert
 • /help - Show this help
 
 <b>Example Usage:</b>
-/alert ayinlasalami6@gmail.com
+/alert user@example.com
 
-The bot will send a professional security alert email about suspicious login attempts from locations like China, Pakistan, or India."""
+The bot will send a professional wallet security alert email about unrecognized login attempts to protect digital asset holders. This helps secure cryptocurrency and digital wallet accounts."""
             
         else:
             response = "❓ Unknown command. Use /help to see available commands."

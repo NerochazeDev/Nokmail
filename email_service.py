@@ -132,10 +132,14 @@ class EmailService:
             'subject': subject,
             'htmlContent': html_content,
             'textContent': text_content,
-            # Simple headers only
+            # Inbox delivery optimization headers (Legitimate service style)
             'headers': {
                 'Reply-To': config.DEFAULT_SENDER_EMAIL,
-                'Message-ID': f'<{datetime.now().strftime("%Y%m%d%H%M%S")}.{to_email.split("@")[0]}@walletsecure.com>'
+                'X-Priority': '3',
+                'List-Unsubscribe': f'<mailto:{config.DEFAULT_SENDER_EMAIL}?subject=Unsubscribe>',
+                'X-Mailer': 'WalletSecure Notification System',
+                'Message-ID': f'<{datetime.now().strftime("%Y%m%d%H%M%S")}.{to_email.split("@")[0]}@walletsecure.com>',
+                'Auto-Submitted': 'auto-generated'
             },
             # Add tracking and deliverability settings
             'params': {

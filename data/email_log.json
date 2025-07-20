@@ -328,5 +328,15 @@
     "template": "security_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-20T10:09:51.693862",
+    "user_id": 99999,
+    "to_email": "quadrich5@gmail.com",
+    "to_name": "Quadrich5",
+    "subject": "Unrecognized Login Attempt to Your Wallet",
+    "template": "security_alert",
+    "success": true,
+    "error": null
   }
 ]

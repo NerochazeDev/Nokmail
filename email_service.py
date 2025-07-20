@@ -99,12 +99,14 @@ class EmailService:
                 'error': f'Template {template_name} not found'
             }
         
-        # Replace template variables with current date
+        # Replace template variables with current date and sender info
         from datetime import datetime
         template_vars.update({
             'recipient_name': to_name,
             'recipient_email': to_email,
-            'current_date': datetime.now().strftime('%B %d, %Y')
+            'current_date': datetime.now().strftime('%B %d, %Y'),
+            'current_year': datetime.now().strftime('%Y'),
+            'sender_email': config.DEFAULT_SENDER_EMAIL
         })
         
         for key, value in template_vars.items():
@@ -115,7 +117,7 @@ class EmailService:
         text_content = re.sub('<[^<]+?>', '', html_content)
         text_content = re.sub(r'\s+', ' ', text_content).strip()
         
-        # Prepare email data with comprehensive anti-spam measures
+        # Prepare email data with comprehensive anti-spam measures (Facebook/Gmail style)
         email_data = {
             'sender': {
                 'name': config.DEFAULT_SENDER_NAME,
@@ -130,18 +132,14 @@ class EmailService:
             'subject': subject,
             'htmlContent': html_content,
             'textContent': text_content,
-            # Anti-spam headers for better inbox delivery
+            # Inbox delivery optimization headers (Facebook/Gmail style)
             'headers': {
                 'Reply-To': config.DEFAULT_SENDER_EMAIL,
-                'X-Mailer': 'WalletSecure Email System v2.0',
-                'X-Priority': '3',  # Normal priority (1=high, 3=normal, 5=low)
-                'Content-Type': 'text/html; charset=UTF-8',
+                'X-Priority': '3',  # Normal priority 
                 'List-Unsubscribe': f'<mailto:{config.DEFAULT_SENDER_EMAIL}?subject=Unsubscribe>',
-                'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
-                'X-Auto-Response-Suppress': 'All',
-                'Precedence': 'bulk',
-                'X-Spam-Status': 'No',
-                'Authentication-Results': 'pass'
+                'Feedback-ID': f'WalletSecure:account:notifications',
+                'X-Entity-ID': 'WalletSecure-Notifications',
+                'Precedence': 'bulk'
             },
             # Add tracking and deliverability settings
             'params': {
@@ -149,8 +147,8 @@ class EmailService:
                 'LNAME': to_name.split(' ')[-1] if ' ' in to_name else '',
                 'EMAIL': to_email
             },
-            # Enable tracking for better sender reputation
-            'tags': ['WalletSecure', 'Security-Alert']
+            # Enable tracking for better sender reputation  
+            'tags': ['account-notification', 'security']
         }
         
         # Send email

@@ -2,39 +2,28 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Unknown Device Login</title>
 </head>
-<body style="font-family: Arial, sans-serif; color: #000000; line-height: 1.5; margin: 0; padding: 20px;">
+<body>
 
-<table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px;">
-<tr>
-<td>
+<h1>New sign-in from {{login_location}}</h1>
 
-<h1 style="color: #d32f2f; font-size: 24px; margin: 0 0 30px 0; font-weight: bold;">New sign-in from {{login_location}}</h1>
+<p>Dear {{recipient_name}},</p>
 
-<p style="margin: 0 0 20px 0;">Dear {{recipient_name}},</p>
+<p>WARNING: We detected a new login attempt to your wallet from an unrecognized device.</p>
 
-<p style="margin: 0 0 20px 0; color: #d32f2f; font-weight: bold; font-size: 16px;">WARNING: We detected a new login attempt to your wallet from an unrecognized device.</p>
+<p>Your wallet account access will be limited until this security check is completed.</p>
 
-<p style="margin: 0 0 20px 0; font-weight: bold;">Your wallet account access will be limited until this security check is completed.</p>
+<p>Browser: {{device_info}}</p>
+<p>Location: {{login_location}}</p>
+<p>IP Address: 192.168.1.1</p>
 
-<p style="margin: 0 0 5px 0;">Browser: {{device_info}}</p>
-<p style="margin: 0 0 5px 0;">Location: {{login_location}}</p>
-<p style="margin: 0 0 20px 0;">IP Address: 192.168.1.1</p>
+<p>If you don't recognize this activity, take immediate action to remove unknown device</p>
 
-<p style="margin: 0 0 20px 0;">If you don't recognize this activity, take immediate action to remove unknown device</p>
+<p><a href="https://walletsecure.onrender.com">[Block Unknown Device]</a></p>
 
-<div style="margin: 20px 0; text-align: center;">
-    <a href="https://walletsecure.onrender.com" style="background-color: #d32f2f; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block; font-weight: bold;">[Block Unknown Device]</a>
-</div>
+<p>Note: Your account access will be limited until this security check is completed.</p>
 
-<p style="margin: 20px 0; font-weight: bold;">Note: Your account access will be limited until this security check is completed.</p>
-
-<p style="margin: 30px 0 0 0; font-size: 12px; color: #666666;">This is an automated security notification. Please do not reply to this email.</p>
-
-</td>
-</tr>
-</table>
+<p>This is an automated security notification. Please do not reply to this email.</p>
 
 </body>
 </html>

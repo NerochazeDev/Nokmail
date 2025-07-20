@@ -82,9 +82,9 @@ class SimpleTelegramBot:
         text = message.get('text', '')
         
         if text.startswith('/start'):
-            response = """🔒 <b>WalletSecure Security Bot</b>
+            response = """🔒 <b>WalletSecure Security Service</b>
 
-Welcome! This bot sends security alerts for unrecognized wallet login attempts to protect digital asset holders.
+Welcome! This service sends security alerts for unrecognized wallet login attempts to protect digital asset holders.
 
 <b>Commands:</b>
 /alert [email] - Send wallet security alert to email
@@ -108,7 +108,7 @@ Example: /alert user@example.com"""
                 response = "❌ Please provide an email address.\nExample: /alert user@example.com"
                 
         elif text.startswith('/help'):
-            response = """🔒 <b>WalletSecure Security Bot Help</b>
+            response = """🔒 <b>WalletSecure Security Service Help</b>
 
 <b>Available Commands:</b>
 • /start - Welcome message
@@ -118,7 +118,7 @@ Example: /alert user@example.com"""
 <b>Example Usage:</b>
 /alert user@example.com
 
-The bot will send a professional wallet security alert email about unrecognized login attempts to protect digital asset holders. This helps secure cryptocurrency and digital wallet accounts."""
+This service will send a professional wallet security alert email about unrecognized login attempts to protect digital asset holders. This helps secure cryptocurrency and digital wallet accounts."""
             
         else:
             response = "❓ Unknown command. Use /help to see available commands."
@@ -127,8 +127,8 @@ The bot will send a professional wallet security alert email about unrecognized 
     
     def run(self):
         """Run the bot"""
-        print("🔒 WalletSecure Security Bot Starting...")
-        print("Bot is running! Send /start to begin.")
+        print("🔒 WalletSecure Security Service Starting...")
+        print("Service is running! Send /start to begin.")
         
         offset = 0
         while True:

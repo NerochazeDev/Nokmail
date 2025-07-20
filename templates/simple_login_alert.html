@@ -1,21 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Sign-in notification</title>
-    <!--[if mso]>
-    <noscript>
-        <xml>
-            <o:OfficeDocumentSettings>
-                <o:PixelsPerInch>96</o:PixelsPerInch>
-            </o:OfficeDocumentSettings>
-        </xml>
-    </noscript>
-    <![endif]-->
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
     
     <div style="text-align: center; margin-bottom: 30px;">
         <h2 style="color: #1a73e8; margin: 0;">WalletSecure</h2>
@@ -28,16 +18,12 @@
     
     <p>Your account was just used to sign in from a new device.</p>
     
-    <table cellpadding="0" cellspacing="0" style="width: 100%; background-color: #f8f9fa; border-radius: 8px; margin: 20px 0;">
-        <tr>
-            <td style="padding: 20px;">
-                <p style="margin: 0; font-weight: bold;">Sign-in details:</p>
-                <p style="margin: 10px 0 5px 0;"><strong>When:</strong> {{login_time}}</p>
-                <p style="margin: 5px 0;"><strong>Where:</strong> {{login_location}}</p>
-                <p style="margin: 5px 0;"><strong>Device:</strong> {{device_info}}</p>
-            </td>
-        </tr>
-    </table>
+    <div style="background-color: #f8f9fa; padding: 20px; margin: 20px 0; border-radius: 8px;">
+        <p style="margin: 0; font-weight: bold;">Sign-in details:</p>
+        <p style="margin: 10px 0 5px 0;"><strong>When:</strong> {{login_time}}</p>
+        <p style="margin: 5px 0;"><strong>Where:</strong> {{login_location}}</p>
+        <p style="margin: 5px 0;"><strong>Device:</strong> {{device_info}}</p>
+    </div>
     
     <p>If this was you, you don't need to do anything.</p>
     

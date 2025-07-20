@@ -23,10 +23,6 @@ args = "telegram_bot_setup"
 task = "workflow.run"
 args = "Working Telegram Bot"
 
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Web Telegram Bot"
-
 [[workflows.workflow]]
 name = "Telegram Email Bot"
 author = "agent"
@@ -50,15 +46,6 @@ author = "agent"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "python simple_main.py"
-
-[[workflows.workflow]]
-name = "Web Telegram Bot"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python web_bot.py"
-waitForPort = 5000
 
 [agent]
 expertMode = true

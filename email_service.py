@@ -43,6 +43,36 @@ class EmailService:
         self.rate_limit_tracker[user_id].append(now)
         return True
     
+    def _check_duplicate_email(self, to_email: str, subject: str, template_name: str, time_window_seconds: int = 30) -> bool:
+        """Check if a similar email was sent recently to prevent duplicates"""
+        try:
+            if not os.path.exists(config.EMAIL_LOG_FILE):
+                return False
+            
+            with open(config.EMAIL_LOG_FILE, 'r') as file:
+                logs = json.load(file)
+            
+            now = datetime.now()
+            time_threshold = now - timedelta(seconds=time_window_seconds)
+            
+            # Check for recent emails to the same recipient with same subject and template
+            for log in reversed(logs[-50:]):  # Check only last 50 entries for performance
+                try:
+                    log_time = datetime.fromisoformat(log.get('timestamp', ''))
+                    if (log_time > time_threshold and
+                        log.get('to_email') == to_email and
+                        log.get('subject') == subject and
+                        log.get('template') == template_name and
+                        log.get('success') == True):
+                        return True
+                except (ValueError, TypeError):
+                    continue
+            
+            return False
+        except Exception as e:
+            logger.error(f"Error checking for duplicate emails: {e}")
+            return False
+    
     def _load_template(self, template_name: str) -> Optional[str]:
         """Load email template from file"""
         template_path = os.path.join(config.TEMPLATES_DIR, f"{template_name}.html")
@@ -83,6 +113,13 @@ class EmailService:
     async def send_email(self, to_email: str, to_name: str, subject: str, 
                         template_name: str, user_id: int, **template_vars) -> Dict:
         """Send email using Brevo API"""
+        
+        # Check for duplicate emails first
+        if self._check_duplicate_email(to_email, subject, template_name):
+            return {
+                'success': False,
+                'error': 'Duplicate email prevented. Same email was sent recently to this recipient.'
+            }
         
         # Check rate limit
         if not self._check_rate_limit(user_id):

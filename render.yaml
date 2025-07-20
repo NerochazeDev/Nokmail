@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: telegram-email-bot
+    env: python
+    buildCommand: pip install -r render_requirements.txt
+    startCommand: python simple_main.py
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: DEFAULT_SENDER_EMAIL
+        sync: false
+      - key: DEFAULT_SENDER_NAME
+        sync: false
+      - key: BLOCK_DEVICE_URL
+        sync: false
+      - key: EMAIL_RATE_LIMIT
+        value: "10"
+      - key: MAX_CLIENTS_PER_USER
+        value: "100"

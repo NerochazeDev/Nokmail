@@ -528,5 +528,15 @@
     "template": "text_only_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-20T12:29:55.644469",
+    "user_id": 99999,
+    "to_email": "zareblocker@gmail.com",
+    "to_name": "Zareblocker",
+    "subject": "Unknown device login",
+    "template": "text_only_alert",
+    "success": true,
+    "error": null
   }
 ]

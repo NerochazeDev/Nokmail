@@ -112,10 +112,36 @@ class EmailService:
         for key, value in template_vars.items():
             html_content = html_content.replace(f'{{{{{key}}}}}', str(value))
         
-        # Generate plain text version for better deliverability
+        # Generate enhanced plain text version for better deliverability
         import re
         text_content = re.sub('<[^<]+?>', '', html_content)
         text_content = re.sub(r'\s+', ' ', text_content).strip()
+        
+        # Create a more structured plain text version
+        text_content = f"""WalletSecure - Account Security
+
+New sign-in to your account
+
+Hi {to_name},
+
+Your account was just used to sign in from a new device.
+
+Sign-in details:
+When: {template_vars.get('login_time', 'Unknown')}
+Where: {template_vars.get('login_location', 'Unknown')}
+Device: {template_vars.get('device_info', 'Unknown')}
+
+If this was you, you don't need to do anything.
+
+If this wasn't you, please review your account activity and consider changing your password.
+Visit: https://walletsecure.onrender.com
+
+Thanks,
+The WalletSecure team
+
+This email was sent to {to_email}
+WalletSecure, Inc. | Contact us: {config.DEFAULT_SENDER_EMAIL}
+© {datetime.now().strftime('%Y')} WalletSecure. All rights reserved."""
         
         # Prepare email data with comprehensive anti-spam measures (Facebook/Gmail style)
         email_data = {
@@ -132,14 +158,17 @@ class EmailService:
             'subject': subject,
             'htmlContent': html_content,
             'textContent': text_content,
-            # Inbox delivery optimization headers (Legitimate service style)
+            # Enhanced headers for all email providers (Outlook, Yahoo, etc.)
             'headers': {
                 'Reply-To': config.DEFAULT_SENDER_EMAIL,
-                'X-Priority': '3',
+                'Return-Path': config.DEFAULT_SENDER_EMAIL,
                 'List-Unsubscribe': f'<mailto:{config.DEFAULT_SENDER_EMAIL}?subject=Unsubscribe>',
-                'X-Mailer': 'WalletSecure Notification System',
-                'Message-ID': f'<{datetime.now().strftime("%Y%m%d%H%M%S")}.{to_email.split("@")[0]}@walletsecure.com>',
-                'Auto-Submitted': 'auto-generated'
+                'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+                'X-Entity-ID': 'WalletSecure',
+                'X-Auto-Response-Suppress': 'All',
+                'Auto-Submitted': 'auto-generated',
+                'Content-Language': 'en-US',
+                'MIME-Version': '1.0'
             },
             # Add tracking and deliverability settings
             'params': {

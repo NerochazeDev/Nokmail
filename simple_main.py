@@ -69,7 +69,7 @@ class SimpleTelegramBot:
             )
             
             if result.get('success'):
-                return f"✅ Security alert sent to {email}!\nAlert ID: {alert_data['alert_id']}\nLocation: {alert_data['login_location']}"
+                return f"✅ Login alert sent to {email}!\nLocation: {alert_data['login_location']}\nTime: {alert_data['login_time']}\n\nThis notification should reach inbox in Gmail and other email providers."
             else:
                 return f"❌ Failed to send alert: {result.get('error', 'Unknown error')}"
                 

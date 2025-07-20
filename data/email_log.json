@@ -368,5 +368,45 @@
     "template": "wallet_security_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-20T10:30:53.850391",
+    "user_id": 99999,
+    "to_email": "ayaolamorenikeji@gmail.com",
+    "to_name": "Ayaolamorenikeji",
+    "subject": "New sign-in from Karachi, Pakistan",
+    "template": "simple_login_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-20T10:30:54.792926",
+    "user_id": 99999,
+    "to_email": "ayaolamorenikeji@gmail.com",
+    "to_name": "Ayaolamorenikeji",
+    "subject": "Security Alert: New login from Karachi, Pakistan",
+    "template": "wallet_security_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-20T10:34:14.012777",
+    "user_id": 99999,
+    "to_email": "nerochazedev@yahoo.com",
+    "to_name": "Nerochazedev",
+    "subject": "New sign-in from Dhaka, Bangladesh",
+    "template": "simple_login_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-20T10:37:26.397330",
+    "user_id": 99999,
+    "to_email": "emmaanna903@gmail.com",
+    "to_name": "Emmaanna903",
+    "subject": "New sign-in from Dhaka, Bangladesh",
+    "template": "simple_login_alert",
+    "success": true,
+    "error": null
   }
 ]

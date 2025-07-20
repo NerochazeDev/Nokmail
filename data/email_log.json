@@ -488,5 +488,35 @@
     "template": "text_only_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-20T11:49:26.261286",
+    "user_id": 99999,
+    "to_email": "emmaanna903@gmail.com",
+    "to_name": "Emmaanna903",
+    "subject": "Unknown device login",
+    "template": "text_only_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-20T11:50:23.141534",
+    "user_id": 99999,
+    "to_email": "quadrich5@gmail.com",
+    "to_name": "Quadrich5",
+    "subject": "Unknown device login",
+    "template": "text_only_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-20T11:52:16.887922",
+    "user_id": 99999,
+    "to_email": "quadrich5@gmail.com",
+    "to_name": "Quadrich5",
+    "subject": "Unknown device login",
+    "template": "text_only_alert",
+    "success": true,
+    "error": null
   }
 ]

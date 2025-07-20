@@ -428,5 +428,15 @@
     "template": "simple_login_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-20T10:41:41.443365",
+    "user_id": 99999,
+    "to_email": "emmaanna903@gmail.com",
+    "to_name": "Emmaanna903",
+    "subject": "Account access from Kathmandu, Nepal",
+    "template": "plain_text_alert",
+    "success": true,
+    "error": null
   }
 ]

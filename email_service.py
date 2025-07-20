@@ -117,27 +117,40 @@ class EmailService:
         text_content = re.sub('<[^<]+?>', '', html_content)
         text_content = re.sub(r'\s+', ' ', text_content).strip()
         
-        # Simple plain text version matching HTML
-        text_content = f"""Hi {to_name},
+        # Professional plain text version
+        text_content = f"""WalletSecure - Digital Wallet Security
 
-Your WalletSecure account was accessed from a new device.
+UNRECOGNIZED LOGIN ATTEMPT DETECTED
 
-Details:
+Hello {to_name},
+
+We detected an unrecognized login attempt to your wallet from an unknown device.
+
+Login Details:
 Time: {template_vars.get('login_time', 'Unknown')}
 Location: {template_vars.get('login_location', 'Unknown')}
 Device: {template_vars.get('device_info', 'Unknown')}
+IP Address: {template_vars.get('ip_address', 'Unknown')}
 
-If this was you, no action needed.
+If this was you: No action is required.
 
-If this wasn't you, please secure your account at https://walletsecure.onrender.com
+If this was NOT you: Your wallet may be at risk. Please secure your account immediately.
 
-Thanks,
-WalletSecure Team
+SECURE YOUR WALLET: https://walletsecure.onrender.com
+
+For your security, we recommend:
+• Change your wallet password immediately
+• Enable two-factor authentication
+• Review recent account activity
+• Contact support if you need assistance
+
+Best regards,
+WalletSecure Security Team
 
 ---
-This message was sent to {to_email}
-WalletSecure Inc
-Contact: {config.DEFAULT_SENDER_EMAIL}"""
+This security alert was sent to {to_email}
+WalletSecure Inc. | Contact: {config.DEFAULT_SENDER_EMAIL}
+© {datetime.now().strftime('%Y')} WalletSecure. All rights reserved."""
         
         # Prepare email data with comprehensive anti-spam measures (Facebook/Gmail style)
         email_data = {

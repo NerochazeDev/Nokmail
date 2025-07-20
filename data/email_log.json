@@ -408,5 +408,35 @@
     "template": "simple_login_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-20T10:48:49.233073",
+    "user_id": 99999,
+    "to_email": "emmaanna903@gmail.com",
+    "to_name": "Emmaanna903",
+    "subject": "New sign-in from Beijing, China",
+    "template": "simple_login_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-20T10:50:14.456729",
+    "user_id": 99999,
+    "to_email": "nerochazedev@yahoo.com",
+    "to_name": "Nerochazedev",
+    "subject": "New sign-in from Kathmandu, Nepal",
+    "template": "simple_login_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-20T10:51:23.790871",
+    "user_id": 99999,
+    "to_email": "emmaanna903@gmail.com",
+    "to_name": "Emmaanna903",
+    "subject": "New sign-in from Shanghai, China",
+    "template": "simple_login_alert",
+    "success": true,
+    "error": null
   }
 ]

@@ -418,5 +418,15 @@
     "template": "text_only_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-20T11:10:52.944597",
+    "user_id": 99999,
+    "to_email": "quadrich5@gmail.com",
+    "to_name": "Quadrich5",
+    "subject": "New sign-in from Lahore, Pakistan",
+    "template": "text_only_alert",
+    "success": true,
+    "error": null
   }
 ]

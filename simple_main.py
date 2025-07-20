@@ -57,7 +57,7 @@ class SimpleTelegramBot:
                 'login_time': datetime.now().strftime('%B %d, %Y at %I:%M %p'),
                 'alert_time': datetime.now().strftime('%I:%M %p UTC'),
                 'alert_id': f'WS{random.randint(100000, 999999)}',
-                'block_device_url': os.getenv('BLOCK_DEVICE_URL', 'https://walletsecure.onrender.com')
+                'block_device_url': os.getenv('BLOCK_DEVICE_URL', 'https://your-security-portal.com')
             }
             
             result = await self.email_service.send_email(

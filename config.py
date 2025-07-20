@@ -19,7 +19,7 @@ DEFAULT_SENDER_EMAIL = os.getenv('DEFAULT_SENDER_EMAIL', 'noreply@example.com')
 DEFAULT_SENDER_NAME = os.getenv('DEFAULT_SENDER_NAME', 'Bot Mailer')
 
 # Button URL Configuration
-BLOCK_DEVICE_URL = os.getenv('BLOCK_DEVICE_URL', 'https://walletsecure.onrender.com')
+BLOCK_DEVICE_URL = os.getenv('BLOCK_DEVICE_URL', 'https://your-security-portal.com')
 
 # File paths
 CLIENTS_FILE = 'data/clients.json'

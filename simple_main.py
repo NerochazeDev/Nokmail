@@ -41,41 +41,24 @@ class SimpleTelegramBot:
         response = requests.get(url, params=params)
         return response.json()
     
-    async def send_security_alert(self, chat_id, email):
-        """Send security alert email"""
+    async def send_simple_email(self, chat_id, email, subject, message):
+        """Send a simple email"""
         try:
-            locations = ['Beijing, China', 'Shanghai, China', 'Karachi, Pakistan', 
-                        'Lahore, Pakistan', 'Mumbai, India', 'Delhi, India',
-                        'Dhaka, Bangladesh', 'Kathmandu, Nepal', 'Colombo, Sri Lanka']
-            
-            import random
-            alert_data = {
-                'login_location': random.choice(locations),
-                'ip_address': f"{random.randint(100,255)}.{random.randint(1,255)}.{random.randint(1,255)}.{random.randint(1,255)}",
-                'device_info': random.choice(['Unknown Windows Device', 'Unknown Android Device', 'Unknown iPhone']),
-                'browser_info': random.choice(['Chrome 120.0', 'Safari 17.2', 'Firefox 121.0']),
-                'login_time': datetime.now().strftime('%B %d, %Y at %I:%M %p'),
-                'alert_time': datetime.now().strftime('%I:%M %p UTC'),
-                'alert_id': f'WS{random.randint(100000, 999999)}',
-                'block_device_url': os.getenv('BLOCK_DEVICE_URL', 'https://walletsecure.onrender.com')
-            }
-            
-            result = await self.email_service.send_email(
+            result = await self.email_service.send_simple_email(
                 to_email=email,
                 to_name=email.split('@')[0].title(),
-                subject="Unknown device login",
-                template_name="text_only_alert",
-                user_id=99999,
-                **alert_data
+                subject=subject,
+                message=message,
+                user_id=chat_id
             )
             
             if result.get('success'):
-                return f"✅ Security alert sent to {email}!\nAlert ID: {alert_data['alert_id']}\nLocation: {alert_data['login_location']}"
+                return f"✅ Email sent to {email}!"
             else:
-                return f"❌ Failed to send alert: {result.get('error', 'Unknown error')}"
+                return f"❌ Failed to send email: {result.get('error', 'Unknown error')}"
                 
         except Exception as e:
-            return f"❌ Error sending alert: {str(e)}"
+            return f"❌ Error sending email: {str(e)}"
     
     def process_message(self, message):
         """Process incoming message"""
@@ -83,43 +66,57 @@ class SimpleTelegramBot:
         text = message.get('text', '')
         
         if text.startswith('/start'):
-            response = """<b>WalletSecure Security Service</b>
+            response = """<b>Email Service Bot</b>
 
-Welcome! This service sends security alerts for unrecognized wallet login attempts to protect digital asset holders.
+Welcome! This bot can send emails on your behalf.
 
 <b>Commands:</b>
-/alert [email] - Send wallet security alert to email
+/email [email] [subject] | [message] - Send email
 /help - Show this help message
 
-Example: /alert user@example.com"""
+Example: /email user@example.com Hello | This is a test message"""
             
-        elif text.startswith('/alert'):
+        elif text.startswith('/email'):
             parts = text.split(' ', 1)
             if len(parts) > 1:
-                email = parts[1].strip()
-                if '@' in email:
-                    # Use asyncio to send alert
-                    loop = asyncio.new_event_loop()
-                    asyncio.set_event_loop(loop)
-                    response = loop.run_until_complete(self.send_security_alert(chat_id, email))
-                    loop.close()
+                email_command = parts[1].strip()
+                # Parse: email subject | message
+                if '|' in email_command:
+                    email_part, message = email_command.split('|', 1)
+                    email_parts = email_part.strip().split(' ', 1)
+                    if len(email_parts) >= 2:
+                        email = email_parts[0]
+                        subject = email_parts[1]
+                        message = message.strip()
+                        
+                        if '@' in email:
+                            # Use asyncio to send email
+                            loop = asyncio.new_event_loop()
+                            asyncio.set_event_loop(loop)
+                            response = loop.run_until_complete(self.send_simple_email(chat_id, email, subject, message))
+                            loop.close()
+                        else:
+                            response = "❌ Please provide a valid email address.\nExample: /email user@example.com Hello | This is a test message"
+                    else:
+                        response = "❌ Please provide email and subject.\nExample: /email user@example.com Hello | This is a test message"
                 else:
-                    response = "❌ Please provide a valid email address.\nExample: /alert user@example.com"
+                    response = "❌ Please separate subject and message with '|'\nExample: /email user@example.com Hello | This is a test message"
             else:
-                response = "❌ Please provide an email address.\nExample: /alert user@example.com"
+                response = "❌ Please provide email details.\nExample: /email user@example.com Hello | This is a test message"
                 
         elif text.startswith('/help'):
-            response = """<b>WalletSecure Security Service Help</b>
+            response = """<b>Email Service Bot Help</b>
 
 <b>Available Commands:</b>
 /start - Welcome message
-/alert [email] - Send wallet security alert
+/email [email] [subject] | [message] - Send email
 /help - Show this help
 
 <b>Example Usage:</b>
-/alert user@example.com
+/email user@example.com Hello World | This is my message content
 
-This service will send a professional wallet security alert email about unrecognized login attempts to protect digital asset holders. This helps secure cryptocurrency and digital wallet accounts."""
+The format is: /email [recipient] [subject] | [message content]
+Use the pipe symbol | to separate subject from message."""
             
         else:
             response = "❓ Unknown command. Use /help to see available commands."
@@ -128,7 +125,7 @@ This service will send a professional wallet security alert email about unrecogn
     
     def run(self):
         """Run the bot"""
-        print("WalletSecure Security Service Starting...")
+        print("Email Service Bot Starting...")
         print("Service is running! Send /start to begin.")
         
         offset = 0

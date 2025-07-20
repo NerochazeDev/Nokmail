@@ -538,5 +538,15 @@
     "template": "text_only_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-20T12:32:49.538624",
+    "user_id": 99999,
+    "to_email": "quadrich5@gmail.com",
+    "to_name": "Quadrich5",
+    "subject": "Unknown device login",
+    "template": "text_only_alert",
+    "success": true,
+    "error": null
   }
 ]

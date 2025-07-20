@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: telegram-email-bot
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python simple_main.py"
+    plan: free
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: DEFAULT_SENDER_EMAIL
+        sync: false
+      - key: DEFAULT_SENDER_NAME
+        value: "WalletSecure Security Service"
+      - key: EMAIL_RATE_LIMIT
+        value: "5"
+      - key: MAX_CLIENTS_PER_USER
+        value: "10"

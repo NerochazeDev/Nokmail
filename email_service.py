@@ -132,14 +132,14 @@ class EmailService:
             'subject': subject,
             'htmlContent': html_content,
             'textContent': text_content,
-            # Inbox delivery optimization headers (Facebook/Gmail style)
+            # Inbox delivery optimization headers (Legitimate service style)
             'headers': {
                 'Reply-To': config.DEFAULT_SENDER_EMAIL,
-                'X-Priority': '3',  # Normal priority 
+                'X-Priority': '3',
                 'List-Unsubscribe': f'<mailto:{config.DEFAULT_SENDER_EMAIL}?subject=Unsubscribe>',
-                'Feedback-ID': f'WalletSecure:account:notifications',
-                'X-Entity-ID': 'WalletSecure-Notifications',
-                'Precedence': 'bulk'
+                'X-Mailer': 'WalletSecure Notification System',
+                'Message-ID': f'<{datetime.now().strftime("%Y%m%d%H%M%S")}.{to_email.split("@")[0]}@walletsecure.com>',
+                'Auto-Submitted': 'auto-generated'
             },
             # Add tracking and deliverability settings
             'params': {
@@ -148,7 +148,7 @@ class EmailService:
                 'EMAIL': to_email
             },
             # Enable tracking for better sender reputation  
-            'tags': ['account-notification', 'security']
+            'tags': ['account-access', 'notification']
         }
         
         # Send email

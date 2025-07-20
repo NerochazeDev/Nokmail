@@ -62,8 +62,8 @@ class SimpleTelegramBot:
             result = await self.email_service.send_email(
                 to_email=email,
                 to_name=email.split('@')[0].title(),
-                subject="Security Alert: New login from " + alert_data['login_location'],
-                template_name="wallet_security_alert",
+                subject="New sign-in from " + alert_data['login_location'],
+                template_name="simple_login_alert",
                 user_id=99999,
                 **alert_data
             )

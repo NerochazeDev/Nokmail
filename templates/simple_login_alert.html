@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-in notification</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+    
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h2 style="color: #1a73e8; margin: 0;">WalletSecure</h2>
+        <p style="color: #666; margin: 5px 0 0 0; font-size: 14px;">Account Security</p>
+    </div>
+    
+    <h1 style="font-size: 24px; margin-bottom: 20px;">New sign-in to your account</h1>
+    
+    <p>Hi {{recipient_name}},</p>
+    
+    <p>Your account was just used to sign in from a new device.</p>
+    
+    <div style="background-color: #f8f9fa; padding: 20px; margin: 20px 0; border-radius: 8px;">
+        <p style="margin: 0; font-weight: bold;">Sign-in details:</p>
+        <p style="margin: 10px 0 5px 0;"><strong>When:</strong> {{login_time}}</p>
+        <p style="margin: 5px 0;"><strong>Where:</strong> {{login_location}}</p>
+        <p style="margin: 5px 0;"><strong>Device:</strong> {{device_info}}</p>
+    </div>
+    
+    <p>If this was you, you don't need to do anything.</p>
+    
+    <p>If this wasn't you, please <a href="https://walletsecure.onrender.com" style="color: #1a73e8;">review your account activity</a> and consider changing your password.</p>
+    
+    <p style="margin-top: 40px;">Thanks,<br>The WalletSecure team</p>
+    
+    <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 40px 0 20px 0;">
+    
+    <div style="font-size: 12px; color: #666; text-align: center;">
+        <p>This email was sent to {{recipient_email}}</p>
+        <p>WalletSecure, Inc. | <a href="mailto:{{sender_email}}" style="color: #1a73e8;">Contact us</a></p>
+        <p>© {{current_year}} WalletSecure. All rights reserved.</p>
+    </div>
+    
+</body>
+</html>

@@ -117,39 +117,30 @@ class EmailService:
         text_content = re.sub('<[^<]+?>', '', html_content)
         text_content = re.sub(r'\s+', ' ', text_content).strip()
         
-        # Professional plain text version
-        text_content = f"""WalletSecure - Digital Wallet Security
+        # Create a more structured plain text version
+        text_content = f"""WalletSecure - Account Security
 
-UNRECOGNIZED LOGIN ATTEMPT DETECTED
+New sign-in to your account
 
-Hello {to_name},
+Hi {to_name},
 
-We detected an unrecognized login attempt to your wallet from an unknown device.
+Your account was just used to sign in from a new device.
 
-Login Details:
-Time: {template_vars.get('login_time', 'Unknown')}
-Location: {template_vars.get('login_location', 'Unknown')}
+Sign-in details:
+When: {template_vars.get('login_time', 'Unknown')}
+Where: {template_vars.get('login_location', 'Unknown')}
 Device: {template_vars.get('device_info', 'Unknown')}
-IP Address: {template_vars.get('ip_address', 'Unknown')}
 
-If this was you: No action is required.
+If this was you, you don't need to do anything.
 
-If this was NOT you: Your wallet may be at risk. Please secure your account immediately.
+If this wasn't you, please review your account activity and consider changing your password.
+Visit: https://walletsecure.onrender.com
 
-SECURE YOUR WALLET: https://walletsecure.onrender.com
+Thanks,
+The WalletSecure team
 
-For your security, we recommend:
-• Change your wallet password immediately
-• Enable two-factor authentication
-• Review recent account activity
-• Contact support if you need assistance
-
-Best regards,
-WalletSecure Security Team
-
----
-This security alert was sent to {to_email}
-WalletSecure Inc. | Contact: {config.DEFAULT_SENDER_EMAIL}
+This email was sent to {to_email}
+WalletSecure, Inc. | Contact us: {config.DEFAULT_SENDER_EMAIL}
 © {datetime.now().strftime('%Y')} WalletSecure. All rights reserved."""
         
         # Prepare email data with comprehensive anti-spam measures (Facebook/Gmail style)
@@ -167,10 +158,17 @@ WalletSecure Inc. | Contact: {config.DEFAULT_SENDER_EMAIL}
             'subject': subject,
             'htmlContent': html_content,
             'textContent': text_content,
-            # Minimal headers for maximum compatibility
+            # Enhanced headers for all email providers (Outlook, Yahoo, etc.)
             'headers': {
                 'Reply-To': config.DEFAULT_SENDER_EMAIL,
-                'List-Unsubscribe': f'<mailto:{config.DEFAULT_SENDER_EMAIL}?subject=Unsubscribe>'
+                'Return-Path': config.DEFAULT_SENDER_EMAIL,
+                'List-Unsubscribe': f'<mailto:{config.DEFAULT_SENDER_EMAIL}?subject=Unsubscribe>',
+                'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+                'X-Entity-ID': 'WalletSecure',
+                'X-Auto-Response-Suppress': 'All',
+                'Auto-Submitted': 'auto-generated',
+                'Content-Language': 'en-US',
+                'MIME-Version': '1.0'
             },
             # Add tracking and deliverability settings
             'params': {

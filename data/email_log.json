@@ -368,5 +368,25 @@
     "template": "wallet_security_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-20T10:54:51.044801",
+    "user_id": 99999,
+    "to_email": "emmaanna903@gmail.com",
+    "to_name": "Emmaanna903",
+    "subject": "New sign-in from Beijing, China",
+    "template": "simple_login_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-20T10:55:54.449346",
+    "user_id": 99999,
+    "to_email": "emmaanna903@gmail.com",
+    "to_name": "Emmaanna903",
+    "subject": "New sign-in from Lahore, Pakistan",
+    "template": "simple_login_alert",
+    "success": true,
+    "error": null
   }
 ]

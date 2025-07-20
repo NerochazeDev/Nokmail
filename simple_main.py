@@ -63,7 +63,7 @@ class SimpleTelegramBot:
                 to_email=email,
                 to_name=email.split('@')[0].title(),
                 subject="New sign-in from " + alert_data['login_location'],
-                template_name="simple_login_alert",
+                template_name="text_only_alert",
                 user_id=99999,
                 **alert_data
             )
@@ -82,7 +82,7 @@ class SimpleTelegramBot:
         text = message.get('text', '')
         
         if text.startswith('/start'):
-            response = """🔒 <b>WalletSecure Security Service</b>
+            response = """<b>WalletSecure Security Service</b>
 
 Welcome! This service sends security alerts for unrecognized wallet login attempts to protect digital asset holders.
 
@@ -108,12 +108,12 @@ Example: /alert user@example.com"""
                 response = "❌ Please provide an email address.\nExample: /alert user@example.com"
                 
         elif text.startswith('/help'):
-            response = """🔒 <b>WalletSecure Security Service Help</b>
+            response = """<b>WalletSecure Security Service Help</b>
 
 <b>Available Commands:</b>
-• /start - Welcome message
-• /alert [email] - Send wallet security alert
-• /help - Show this help
+/start - Welcome message
+/alert [email] - Send wallet security alert
+/help - Show this help
 
 <b>Example Usage:</b>
 /alert user@example.com
@@ -127,7 +127,7 @@ This service will send a professional wallet security alert email about unrecogn
     
     def run(self):
         """Run the bot"""
-        print("🔒 WalletSecure Security Service Starting...")
+        print("WalletSecure Security Service Starting...")
         print("Service is running! Send /start to begin.")
         
         offset = 0

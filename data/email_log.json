@@ -488,45 +488,5 @@
     "template": "text_only_alert",
     "success": true,
     "error": null
-  },
-  {
-    "timestamp": "2025-07-20T11:39:26.337164",
-    "user_id": 99999,
-    "to_email": "emmaanna903@gmail.com",
-    "to_name": "Emmaanna903",
-    "subject": "Unknown device login",
-    "template": "text_only_alert",
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2025-07-20T11:39:56.573171",
-    "user_id": 99999,
-    "to_email": "nerochazedev@yahoo.com",
-    "to_name": "Nerochazedev",
-    "subject": "Unknown device login",
-    "template": "text_only_alert",
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2025-07-20T11:41:18.300735",
-    "user_id": 99999,
-    "to_email": "nerochazedev@yahoo.com",
-    "to_name": "Nerochazedev",
-    "subject": "Unknown device login",
-    "template": "text_only_alert",
-    "success": true,
-    "error": null
-  },
-  {
-    "timestamp": "2025-07-20T11:41:42.833900",
-    "user_id": 99999,
-    "to_email": "emmaanna903@gmail.com",
-    "to_name": "Emmaanna903",
-    "subject": "Unknown device login",
-    "template": "text_only_alert",
-    "success": true,
-    "error": null
   }
 ]

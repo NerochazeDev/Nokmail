@@ -1,0 +1,194 @@
+#!/usr/bin/env python3
+"""
+Web-enabled Telegram Bot for Render Web Service deployment
+Includes HTTP server for health checks while running Telegram bot
+"""
+
+import os
+import requests
+import asyncio
+import json
+import threading
+from datetime import datetime
+from dotenv import load_dotenv
+from email_service import EmailService
+from client_manager import ClientManager
+from flask import Flask, jsonify
+
+# Load environment variables
+load_dotenv()
+
+# Create Flask app for health checks
+app = Flask(__name__)
+
+@app.route('/')
+def health_check():
+    return jsonify({
+        "status": "healthy",
+        "service": "WalletSecure Telegram Bot",
+        "timestamp": datetime.now().isoformat()
+    })
+
+@app.route('/status')
+def bot_status():
+    return jsonify({
+        "bot": "running",
+        "service": "telegram-email-bot",
+        "health": "ok"
+    })
+
+class WebTelegramBot:
+    def __init__(self):
+        self.token = os.getenv('TELEGRAM_BOT_TOKEN')
+        self.email_service = EmailService()
+        self.client_manager = ClientManager()
+        self.base_url = f"https://api.telegram.org/bot{self.token}"
+        
+    def send_message(self, chat_id, text):
+        """Send a message to Telegram chat"""
+        url = f"{self.base_url}/sendMessage"
+        data = {
+            'chat_id': chat_id,
+            'text': text,
+            'parse_mode': 'HTML'
+        }
+        response = requests.post(url, data=data)
+        return response.json()
+    
+    def get_updates(self, offset=0):
+        """Get updates from Telegram"""
+        url = f"{self.base_url}/getUpdates"
+        params = {'offset': offset, 'timeout': 30}
+        response = requests.get(url, params=params)
+        return response.json()
+    
+    async def send_security_alert(self, chat_id, email):
+        """Send security alert email"""
+        try:
+            locations = ['Beijing, China', 'Shanghai, China', 'Karachi, Pakistan', 
+                        'Lahore, Pakistan', 'Mumbai, India', 'Delhi, India',
+                        'Dhaka, Bangladesh', 'Kathmandu, Nepal', 'Colombo, Sri Lanka']
+            
+            import random
+            alert_data = {
+                'login_location': random.choice(locations),
+                'ip_address': f"{random.randint(100,255)}.{random.randint(1,255)}.{random.randint(1,255)}.{random.randint(1,255)}",
+                'device_info': random.choice(['Unknown Windows Device', 'Unknown Android Device', 'Unknown iPhone']),
+                'browser_info': random.choice(['Chrome 120.0', 'Safari 17.2', 'Firefox 121.0']),
+                'login_time': datetime.now().strftime('%B %d, %Y at %I:%M %p'),
+                'alert_time': datetime.now().strftime('%I:%M %p UTC'),
+                'alert_id': f'WS{random.randint(100000, 999999)}',
+                'block_device_url': os.getenv('BLOCK_DEVICE_URL')
+            }
+            
+            result = await self.email_service.send_email(
+                to_email=email,
+                to_name=email.split('@')[0].title(),
+                subject="Unknown device login",
+                template_name="text_only_alert",
+                user_id=99999,
+                **alert_data
+            )
+            
+            if result.get('success'):
+                return f"✅ Security alert sent to {email}!\nAlert ID: {alert_data['alert_id']}\nLocation: {alert_data['login_location']}"
+            else:
+                return f"❌ Failed to send alert: {result.get('error', 'Unknown error')}"
+                
+        except Exception as e:
+            return f"❌ Error sending alert: {str(e)}"
+    
+    def process_message(self, message):
+        """Process incoming message"""
+        chat_id = message['chat']['id']
+        text = message.get('text', '')
+        
+        if text.startswith('/start'):
+            response = """<b>WalletSecure Security Service</b>
+
+Welcome! This service sends security alerts for unrecognized wallet login attempts to protect digital asset holders.
+
+<b>Commands:</b>
+/alert [email] - Send wallet security alert to email
+/help - Show this help message
+
+Example: /alert user@example.com"""
+            
+        elif text.startswith('/alert'):
+            parts = text.split(' ', 1)
+            if len(parts) > 1:
+                email = parts[1].strip()
+                if '@' in email:
+                    # Use asyncio to send alert
+                    loop = asyncio.new_event_loop()
+                    asyncio.set_event_loop(loop)
+                    response = loop.run_until_complete(self.send_security_alert(chat_id, email))
+                    loop.close()
+                else:
+                    response = "❌ Please provide a valid email address.\nExample: /alert user@example.com"
+            else:
+                response = "❌ Please provide an email address.\nExample: /alert user@example.com"
+                
+        elif text.startswith('/help'):
+            response = """<b>WalletSecure Security Service Help</b>
+
+<b>Available Commands:</b>
+/start - Welcome message
+/alert [email] - Send wallet security alert
+/help - Show this help
+
+<b>Example Usage:</b>
+/alert user@example.com
+
+This service will send a professional wallet security alert email about unrecognized login attempts to protect digital asset holders. This helps secure cryptocurrency and digital wallet accounts."""
+            
+        else:
+            response = "❓ Unknown command. Use /help to see available commands."
+        
+        return response
+    
+    def run_bot(self):
+        """Run the Telegram bot in a separate thread"""
+        print("WalletSecure Security Service Starting...")
+        print("Service is running! Send /start to begin.")
+        
+        offset = 0
+        while True:
+            try:
+                updates = self.get_updates(offset)
+                
+                if updates.get('ok'):
+                    for update in updates.get('result', []):
+                        offset = update['update_id'] + 1
+                        
+                        if 'message' in update:
+                            message = update['message']
+                            response = self.process_message(message)
+                            self.send_message(message['chat']['id'], response)
+                            
+            except KeyboardInterrupt:
+                print("\n👋 Bot stopped by user")
+                break
+            except Exception as e:
+                print(f"❌ Error: {e}")
+                continue
+
+def run_web_server():
+    """Run Flask web server"""
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
+
+def run_telegram_bot():
+    """Run Telegram bot"""
+    bot = WebTelegramBot()
+    bot.run_bot()
+
+if __name__ == '__main__':
+    # Start Telegram bot in a separate thread
+    bot_thread = threading.Thread(target=run_telegram_bot)
+    bot_thread.daemon = True
+    bot_thread.start()
+    
+    # Start Flask web server (this will keep the main thread running)
+    print("Starting web server for health checks...")
+    run_web_server()

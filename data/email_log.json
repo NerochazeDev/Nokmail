@@ -408,5 +408,25 @@
     "template": "simple_login_alert",
     "success": true,
     "error": null
+  },
+  {
+    "timestamp": "2025-07-20T10:39:24.898068",
+    "user_id": 99999,
+    "to_email": "nerochazedev@yahoo.com",
+    "to_name": "Nerochazedev",
+    "subject": "New sign-in from Shanghai, China",
+    "template": "simple_login_alert",
+    "success": true,
+    "error": null
+  },
+  {
+    "timestamp": "2025-07-20T10:39:26.130831",
+    "user_id": 99999,
+    "to_email": "nerochazedev@yahoo.com",
+    "to_name": "Nerochazedev",
+    "subject": "New sign-in from Shanghai, China",
+    "template": "simple_login_alert",
+    "success": true,
+    "error": null
   }
 ]

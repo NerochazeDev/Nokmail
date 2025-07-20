@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Account notification</title>
+</head>
+<body style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.4; color: #000000; margin: 0; padding: 20px;">
+
+<p>Hi {{recipient_name}},</p>
+
+<p>Your WalletSecure account was accessed from a new device.</p>
+
+<p>Details:</p>
+<p>Time: {{login_time}}</p>
+<p>Location: {{login_location}}</p>
+<p>Device: {{device_info}}</p>
+
+<p>If this was you, no action needed.</p>
+
+<p>If this wasn't you, please secure your account at https://walletsecure.onrender.com</p>
+
+<p>Thanks,<br>
+WalletSecure Team</p>
+
+<p>---<br>
+This message was sent to {{recipient_email}}<br>
+WalletSecure Inc<br>
+Contact: {{sender_email}}</p>
+
+</body>
+</html>

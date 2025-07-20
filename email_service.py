@@ -117,31 +117,27 @@ class EmailService:
         text_content = re.sub('<[^<]+?>', '', html_content)
         text_content = re.sub(r'\s+', ' ', text_content).strip()
         
-        # Create a more structured plain text version
-        text_content = f"""WalletSecure - Account Security
+        # Simple plain text version matching HTML
+        text_content = f"""Hi {to_name},
 
-New sign-in to your account
+Your WalletSecure account was accessed from a new device.
 
-Hi {to_name},
-
-Your account was just used to sign in from a new device.
-
-Sign-in details:
-When: {template_vars.get('login_time', 'Unknown')}
-Where: {template_vars.get('login_location', 'Unknown')}
+Details:
+Time: {template_vars.get('login_time', 'Unknown')}
+Location: {template_vars.get('login_location', 'Unknown')}
 Device: {template_vars.get('device_info', 'Unknown')}
 
-If this was you, you don't need to do anything.
+If this was you, no action needed.
 
-If this wasn't you, please review your account activity and consider changing your password.
-Visit: https://walletsecure.onrender.com
+If this wasn't you, please secure your account at https://walletsecure.onrender.com
 
 Thanks,
-The WalletSecure team
+WalletSecure Team
 
-This email was sent to {to_email}
-WalletSecure, Inc. | Contact us: {config.DEFAULT_SENDER_EMAIL}
-© {datetime.now().strftime('%Y')} WalletSecure. All rights reserved."""
+---
+This message was sent to {to_email}
+WalletSecure Inc
+Contact: {config.DEFAULT_SENDER_EMAIL}"""
         
         # Prepare email data with comprehensive anti-spam measures (Facebook/Gmail style)
         email_data = {
@@ -158,17 +154,10 @@ WalletSecure, Inc. | Contact us: {config.DEFAULT_SENDER_EMAIL}
             'subject': subject,
             'htmlContent': html_content,
             'textContent': text_content,
-            # Enhanced headers for all email providers (Outlook, Yahoo, etc.)
+            # Minimal headers for maximum compatibility
             'headers': {
                 'Reply-To': config.DEFAULT_SENDER_EMAIL,
-                'Return-Path': config.DEFAULT_SENDER_EMAIL,
-                'List-Unsubscribe': f'<mailto:{config.DEFAULT_SENDER_EMAIL}?subject=Unsubscribe>',
-                'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
-                'X-Entity-ID': 'WalletSecure',
-                'X-Auto-Response-Suppress': 'All',
-                'Auto-Submitted': 'auto-generated',
-                'Content-Language': 'en-US',
-                'MIME-Version': '1.0'
+                'List-Unsubscribe': f'<mailto:{config.DEFAULT_SENDER_EMAIL}?subject=Unsubscribe>'
             },
             # Add tracking and deliverability settings
             'params': {

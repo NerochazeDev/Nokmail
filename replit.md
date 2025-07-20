@@ -24,7 +24,7 @@ Preferred communication style: Simple, everyday language.
 - ✅ Replaced "bot" references with "Security Service" and "Security Operations"
 - ✅ Cleaned up unused template files and test files
 - ✅ Service now running with professional messaging: "WalletSecure Security Service"
-- ✅ Updated button URL configuration from walletsecure.onrender.com to your-security-portal.com
+- ✅ Removed hardcoded URL and configured BLOCK_DEVICE_URL to use environment variables from .env file
 - ⚠️ Main workflow (main.py) has import conflicts, but alternative working solution available
 
 **July 19, 2025:**

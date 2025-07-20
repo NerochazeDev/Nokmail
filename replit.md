@@ -9,6 +9,8 @@ This project is a Telegram bot that sends security alert emails to users. The bo
 - ✓ Added duplicate email prevention mechanism to EmailService
 - ✓ Implemented 30-second time window to prevent identical emails to same recipient
 - ✓ Only "Working Telegram Bot" workflow is now active to prevent conflicts
+- ✓ Disabled email link tracking to fix button redirect issue
+- ✓ Buttons now go directly to URLs instead of through intermediate redirects
 
 ## Project Architecture
 

@@ -184,7 +184,9 @@ class EmailService:
                 'LNAME': to_name.split(' ')[-1] if ' ' in to_name else '',
                 'EMAIL': to_email
             },
-            # Enable tracking for better sender reputation  
+            # Disable link tracking to prevent intermediate redirects
+            'disableClickTracking': True,
+            'disableOpenTracking': True,
             'tags': ['account-access', 'notification']
         }
         
@@ -205,7 +207,7 @@ class EmailService:
             
             if response.status_code == 201:
                 # Log successful email
-                self._log_email(user_id, to_email, to_name, subject, template_name, True)
+                self._log_email(user_id, to_email, to_name, subject, template_name, True, None)
                 return {
                     'success': True,
                     'message_id': response.json().get('messageId')
@@ -237,7 +239,7 @@ class EmailService:
             }
     
     def _log_email(self, user_id: int, to_email: str, to_name: str, 
-                   subject: str, template: str, success: bool, error: str = None):
+                   subject: str, template: str, success: bool, error: str | None = None):
         """Log email sending attempt"""
         log_entry = {
             'timestamp': datetime.now().isoformat(),
